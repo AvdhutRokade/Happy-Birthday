@@ -14,7 +14,7 @@ body {
     background-size: cover; /* Ensures the image covers the whole screen */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling */
-    background-color: black; /* Fallback color */
+    /* background-color: black; Fallback color */
 }
 /* Game Container */
 #game-container {
