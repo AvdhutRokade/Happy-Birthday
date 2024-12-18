@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece Puzzle Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Game Container -->
+    <div id="game-container">
+        <!-- Music Toggle Button -->
+        <div id="music-toggle" title="Toggle Music">🔊</div>
+
+        <!-- Game Title & Instructions -->
+        <h1>One Piece Puzzle Adventure</h1>
+        <p id="game-instructions">Welcome to the Pirate Puzzle Adventure! Solve riddles to unlock the treasures.</p>
+
+        <!-- Hidden Game Content -->
+        <div id="game-content" style="display: none;">
+            <!-- Timer & Score -->
+            <div id="stats-container">
+                <p id="timer">Time Left: 120s</p>
+                <p id="score">Score: 0</p>
+            </div>
+
+            <div class="riddle-container">
+                <p id="riddle">Solve this riddle: "What has keys but can't open locks?"</p>
+                <input type="text" id="riddle-answer" placeholder="Enter your answer">
+                <button id="submit-answer">Submit Answer</button>
+            </div>
+            
+
+            <!-- Hidden Devil Fruit -->
+            <img id="devil-fruit" src="devil-fruit.png" alt="Devil Fruit" style="display: none;">
+        </div>
+
+        <!-- Start & Retry Buttons -->
+        <button id="start-button">Start Adventure</button>
+        <button id="retry-button" style="display: none;">Retry</button>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+        <source src="one-piece-music.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+    </audio>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>

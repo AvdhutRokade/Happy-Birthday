@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memories of the Fallen Crown Prince</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="level2.css">
+</head>
+<body>
+    <!-- Ambient Music -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/tgcf-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Overlay Screens -->
+    <div id="game-overlay" class="overlay">
+        <div class="overlay-content">
+            <h1>The Path of Memories</h1>
+            <p>In the misty realm between forgotten moments, seek the hidden fragments of a prince's lost journey...</p>
+            <button id="start-game">Begin Journey</button>
+        </div>
+    </div>
+
+
+    <!-- Scroll Reveal Modal -->
+    <div id="scroll-modal" class="modal">
+        <div class="scroll-content">
+            <span class="close-scroll">&times;</span>
+            <div id="scroll-text"></div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <!-- Misty Map with Hidden Items -->
+        <div id="misty-map">
+            <!-- Hidden Memory Locations -->
+            <div class="map-item" id="memory-location-1" data-item="jade-pendant">
+                <div class="item-hint">Withered stones whisper secrets...</div>
+            </div>
+            <div class="map-item" id="memory-location-2" data-item="scroll-fragment">
+                <div class="item-hint">Shadows between ancient walls...</div>
+            </div>
+            <div class="map-item" id="memory-location-3" data-item="silver-ornament">
+                <div class="item-hint">Branches hold forgotten memories...</div>
+            </div>
+        </div>
+
+        <!-- Collected Items Tracker -->
+        <div id="collected-items-tracker">
+            <div class="collected-item" id="item-jade-pendant">
+                <img src="assets/images/memory1.png" alt="Jade Pendant">
+            </div>
+            <div class="collected-item" id="item-scroll-fragment">
+                <img src="assets/images/memory2.png" alt="Scroll Fragment">
+            </div>
+            <div class="collected-item" id="item-silver-ornament">
+                <img src="assets/images/memory3.png" alt="Silver Ornament">
+            </div>
+        </div>
+
+        <!-- Transition Button -->
+        <button id="proceed-to-puzzle" style="display:none;">Assemble the Memories</button>
+    </div>
+
+    <script src="level2.js"></script>
+</body>
+</html>

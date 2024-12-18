@@ -1,0 +1,122 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background-image: url('/assets/images/pirate-island.jpg'); /* Correct path */
+    background-size: cover; /* Ensures the image covers the whole screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-color: black; /* Fallback color */
+}
+/* Game Container */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Subtle background overlay */
+    padding: 20px;
+}
+
+/* Buttons */
+button {
+    background-color: #FFD700; /* Gold */
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #daa520;
+}
+
+/* Stats (Timer & Score) */
+#stats-container {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+#timer{
+    position: absolute; /* Fixes the elements on the screen */
+    top: 20px;          /* Distance from the top of the screen */
+    right: 140px;        /* Distance from the right of the screen */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    color: white;       /* Text color */
+    padding: 10px 20px; /* Adds padding for better spacing */
+    border-radius: 8px; /* Smooth rounded corners */
+    font-size: 1.2rem;  /* Text size */
+    font-weight: bold;  /* Bold text */
+    margin: 5px 0;      /* Small margin between elements */
+}
+#score{
+    position: absolute; /* Fixes the elements on the screen */
+    top: 20px;          /* Distance from the top of the screen */
+    right: 20px;        /* Distance from the right of the screen */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    color: white;       /* Text color */
+    padding: 10px 20px; /* Adds padding for better spacing */
+    border-radius: 8px; /* Smooth rounded corners */
+    font-size: 1.2rem;  /* Text size */
+    font-weight: bold;  /* Bold text */
+    margin: 5px 0;
+}
+
+/* Riddle Styling */
+.riddle-container {
+    border: 2px solid #FFD700; /* Gold border resembling treasure */
+    border-radius: 10px;       /* Smooth, rounded corners */
+    padding: 20px;             /* Adds space inside the border */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    color: white;              /* Text color */
+    text-align: center;        /* Center aligns text */
+    width: 60%;                /* Adjust the width as per your design */
+    margin: 20px auto;         /* Centers the container horizontally */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+}
+
+#riddle {
+    font-size: 1.5rem;         /* Increase font size for better visibility */
+    margin-bottom: 15px;       /* Spacing below the question */
+}
+
+#riddle-answer {
+    width: 80%;                /* Makes input box occupy most of the container */
+    padding: 10px;             /* Spacing inside the input box */
+    font-size: 1rem;           /* Readable font size */
+    border: 1px solid #FFD700; /* Consistent gold border for input box */
+    border-radius: 5px;        /* Rounded edges for input box */
+    outline: none;             /* Removes default focus border */
+    background-color: #333;    /* Dark background for input box */
+    color: white;              /* White text color */
+    margin-bottom: 10px;       /* Adds space between input and button */
+}
+
+/* Music Toggle */
+#music-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: white;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crown Puzzle - Level 3</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 150px);
+            grid-gap: 10px;
+        }
+        .puzzle-piece {
+            width: 150px;
+            height: 150px;
+            background-color: #ddd;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .puzzle-piece img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .puzzle-piece:hover {
+            background-color: #bbb;
+        }
+        .puzzle-piece.correct {
+            border-color: #90EE90;
+            box-shadow: 0 0 10px rgba(144, 238, 144, 0.7);
+        }
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="puzzle-container"></div>
+    <div id="error-message"></div>
+    <audio id="background-music" loop>
+        <source src="previous-level-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const puzzlePieces = [
+            { id: 1, x: 0, y: 0, width: 150, height: 150 },
+            { id: 2, x: 150, y: 0, width: 150, height: 150 },
+            { id: 3, x: 300, y: 0, width: 150, height: 150 },
+            { id: 4, x: 0, y: 150, width: 150, height: 150 },
+            { id: 5, x: 150, y: 150, width: 150, height: 150 },
+            { id: 6, x: 300, y: 150, width: 150, height: 150 }
+        ];
+
+        let selectedPieces = [];
+        const correctOrder = [1, 2, 3, 4, 5, 6];
+
+        function createPuzzlePieces() {
+            const container = document.getElementById('puzzle-container');
+            const errorMessage = document.getElementById('error-message');
+            container.innerHTML = '';
+            
+            // Create hidden full crown image for reference
+            const fullCrownImg = new Image();
+            fullCrownImg.src = "assets/images/crown.png"; // Replace with your actual image source
+            
+            fullCrownImg.onerror = function() {
+                errorMessage.textContent = "Error: Could not load crown image. Please check the image source.";
+            };
+
+            fullCrownImg.onload = function() {
+                // Shuffle pieces
+                puzzlePieces
+                    .sort(() => Math.random() - 0.5)
+                    .forEach(piece => {
+                        const pieceElement = document.createElement('div');
+                        pieceElement.classList.add('puzzle-piece');
+                        pieceElement.dataset.id = piece.id;
+                        
+                        const img = document.createElement('img');
+                        img.src = fullCrownImg.src;
+                        img.style.clipPath = `inset(${piece.y}px ${450 - (piece.x + piece.width)}px ${450 - (piece.y + piece.height)}px ${piece.x}px)`;
+                        
+                        pieceElement.appendChild(img);
+                        pieceElement.addEventListener('click', () => selectPiece(pieceElement));
+                        container.appendChild(pieceElement);
+                    });
+            }
+        }
+
+        function selectPiece(pieceElement) {
+            if (selectedPieces.includes(pieceElement)) {
+                pieceElement.classList.remove('selected');
+                selectedPieces = selectedPieces.filter(p => p !== pieceElement);
+                return;
+            }
+
+            pieceElement.classList.add('selected');
+            selectedPieces.push(pieceElement);
+
+            if (selectedPieces.length === 2) {
+                swapPieces(selectedPieces[0], selectedPieces[1]);
+                selectedPieces.forEach(p => p.classList.remove('selected'));
+                selectedPieces = [];
+                checkPuzzleCompletion();
+            }
+        }
+
+        function swapPieces(piece1, piece2) {
+            // Swap piece elements (image and dataset)
+            const tempImg = piece1.querySelector('img').cloneNode(true);
+            const tempId = piece1.dataset.id;
+            
+            piece1.querySelector('img').remove();
+            piece1.appendChild(piece2.querySelector('img').cloneNode(true));
+            piece1.dataset.id = piece2.dataset.id;
+            
+            piece2.querySelector('img').remove();
+            piece2.appendChild(tempImg);
+            piece2.dataset.id = tempId;
+        }
+
+        function checkPuzzleCompletion() {
+            const pieces = Array.from(document.querySelectorAll('.puzzle-piece'));
+            const currentOrder = pieces.map(p => parseInt(p.dataset.id));
+            
+            if (JSON.stringify(currentOrder) === JSON.stringify(correctOrder)) {
+                pieces.forEach(p => p.classList.add('correct'));
+                setTimeout(() => {
+                    alert('Congratulations! Crown Puzzle Solved!');
+                }, 500);
+            }
+        }
+
+        // Start background music
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('background-music');
+            music.play();
+        });
+
+        // Initialize puzzle
+        createPuzzlePieces();
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+:root {
+    --tgcf-gold: #D4AF37;
+    --tgcf-dark-bg: #1C1C1C;
+    --tgcf-mist: rgba(200, 200, 200, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+    background: url('assets/images/misty-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #f0f0f0;
+    overflow: hidden;
+}
+
+/* Full Screen Blur Effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Overlay Styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--tgcf-gold);
+}
+
+/* Misty Map Styling */
+#misty-map {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.map-item {
+    position: absolute;
+    width: 100px;
+    height: 150px; /* Increased height to accommodate hint and item */
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-item:hover {
+    opacity: 0.7;
+}
+
+#memory-location-1 { top: 30%; left: 20%; }
+#memory-location-2 { top: 50%; right: 30%; }
+#memory-location-3 { bottom: 20%; left: 40%; }
+
+.map-item::before {
+    content: '?';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: var(--tgcf-gold);
+}
+
+.map-item.collected {
+    opacity: 1;
+}
+
+.map-item.collected::before {
+    content: '✓';
+}
+
+.item-hint {
+    position: absolute;
+    top: 100%; /* Position hint below the item */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: var(--tgcf-gold);
+    white-space: nowrap;
+    display: none; /* Default hidden */
+    margin-top: 10px;
+}
+
+.map-item:hover .item-hint {
+    display: block; /* Show hints on hover */
+}
+
+/* Scroll Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.scroll-content {
+    position: relative;
+    width: 80%; /* Reduced width for a zoomed-out effect */
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 4rem; /* Increased padding for text spacing */
+    background: url('assets/images/scroll.png') no-repeat center center;
+    background-size: contain; /* Ensure the background is fully visible */
+    color: #2C1810;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add some depth to the scroll */
+    border-radius: 10px; /* Rounded corners for a polished look */
+    
+}
+
+.scroll-content p {
+    margin-top: 2rem; /* Add spacing between text and the top of the scroll */
+    text-align: justify; /* Align text neatly */
+    font-size: 1.0rem; /* Adjust font size for better readability */
+    line-height: 1.6; /* Improve text readability */
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.close-scroll {
+    position: absolute;
+    top: 50px;
+    right: 50px; /* Reduced distance to align better with new layout */
+    font-size: 2rem;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.close-scroll:hover {
+    color: #FF6347; /* Change color on hover for better user interaction */
+}
+
+/* Collected Items Tracker */
+#collected-items-tracker {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.collected-item {
+    width: 50px;
+    height: 50px;
+    opacity: 0.3; /* Start semi-transparent */
+    transition: opacity 0.3s;
+}
+
+.collected-item img {
+    width: 100%; /* Ensure image fills the container */
+    height: 100%; /* Ensure image fills the container */
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+.collected-item.active {
+    opacity: 1; /* Fully opaque when active */
+}
+
+/* Buttons */
+button {
+    background-color: var(--tgcf-gold);
+    color: var(--tgcf-dark-bg);
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #FFD700;
+    transform: scale(1.05);
+}

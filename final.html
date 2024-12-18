@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background: url('assets/images/Avdhut_Rokade_create_an_image_in_which_characters_from_one_piece_b0f9d25c-cfda-4c54-a616-e0f9edc02277.png') no-repeat center center/cover; Replace 'background.jpg' with your chosen image */
+            height: 100vh;
+            position: static;
+            background-color: #102408;
+        }
+
+        .celebration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .celebration img {
+            width: 600px;
+            height: auto;
+            animation: zoomIn 6s ease-out forwards;
+        }
+
+        .celebration h1 {
+            font-size: 3rem;
+            color: #376d1e;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            margin-top: 20px;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+        /* Confetti Animation */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgb(37, 37, 8);
+            animation: confetti-fall 3s linear infinite, spin 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                top: 110%;
+                opacity: 0.3;
+                transform: translateX(50px);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Image Zoom Animation */
+        @keyframes zoomIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+        /* Text Fade-in Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Celebration Section -->
+    <div class="celebration">
+        <img src="assets/images/Screenshot (123).png" alt="Happy Birthday!" /> <!-- Replace with your image -->
+        <h1>Happy Birthday!</h1>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Apt.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Confetti Effect -->
+    <script>
+
+
+    window.onload = function() {
+        const audio = document.getElementById('bg-music');
+        audio.play().catch(function(error) {
+            console.log("Autoplay blocked, waiting for user interaction.");
+        });
+    };
+        // Generate Confetti
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(confetti);
+        }
+
+        // Random Color Generator
+        function getRandomColor() {
+            const colors = ['#ff4757', '#1e90ff', '#2ed573', '#ffa502', '#eccc68'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>
